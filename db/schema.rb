@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409045231) do
+ActiveRecord::Schema.define(version: 20150409193214) do
 
   create_table "account_entries", force: :cascade do |t|
     t.float    "time",        limit: 24
@@ -30,6 +30,10 @@ ActiveRecord::Schema.define(version: 20150409045231) do
     t.string   "about",      limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "city",       limit: 255
+    t.integer  "zipcode",    limit: 4
+    t.string   "state",      limit: 255
+    t.integer  "employees",  limit: 4
   end
 
   create_table "employees_projects", force: :cascade do |t|
