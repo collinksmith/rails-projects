@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150409030817) do
     t.integer  "employee_id", limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "account_id",  limit: 4
   end
 
   create_table "accounts", force: :cascade do |t|
