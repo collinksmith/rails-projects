@@ -1,0 +1,1 @@
+A tool for managing transactions between customers and employees. Built as a project for learning Rails ActiveRecord, by following the Treehouse [ActiveRecord Basics](teamtreehouse.com/library/activerecord-basics) course.
