@@ -11,4 +11,5 @@ class TimeEntry < AccountEntry
   def calculate_amount!
     self.amount = TimeEntry.per_hour * self.time
   end
+
 end
