@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe "Adding todo items" do
-  let!(:todo_list) { TodoList.create(title: "Grocery List", description: "Groceries") }
-  let(:user) { create(:user) }  
+  let(:user) { todo_list.user }
+  let!(:todo_list) { create(:todo_list) }
   before { sign_in user, password: 'treehouse1' }
 
   it "is successful with valid content" do
@@ -11,7 +11,7 @@ describe "Adding todo items" do
     fill_in "Content", with: "Milk"
     click_button "Save"
     expect(page).to have_content("Added todo list item.")
-    within("ul.todo_items") do
+    within("table.todo_items") do
       expect(page).to have_content("Milk")
     end
   end
@@ -37,5 +37,5 @@ describe "Adding todo items" do
     end
     expect(page).to have_content("Content is too short")
   end
-
+  
 end

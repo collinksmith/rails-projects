@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe "Signing up" do
-  it "allows a user to sign up for the site and creates an object in the database" do
+  it "allows a user to sign up for the site and creates the object in the database" do
     expect(User.count).to eq(0)
 
     visit "/"
@@ -17,5 +17,5 @@ describe "Signing up" do
 
     expect(User.count).to eq(1)
   end
-
+  
 end

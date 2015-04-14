@@ -1,13 +1,11 @@
 require 'spec_helper'
 
 describe "Editing todo items" do
-  let(:user) { create(:user) }
-  let!(:todo_list) { TodoList.create(title: "Grocery List", description: "Groceries") }
-  let!(:todo_item) { todo_list.todo_items.create(content: "Milk") }
+  let(:user) { todo_list.user }
+  let!(:todo_list) { create(:todo_list) }
+  let!(:todo_item) { todo_list.todo_items.create(content: "Milk") }  
+  before { sign_in user, password: 'treehouse1' }
 
-  before do
-    sign_in(user, password: "treehouse1")
-  end
 
   it "is successful with valid content" do
     visit_todo_list(todo_list)
@@ -46,5 +44,7 @@ describe "Editing todo items" do
     todo_item.reload
     expect(todo_item.content).to eq("Milk")
   end
+
+
 
 end

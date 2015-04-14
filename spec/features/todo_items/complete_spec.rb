@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe "Completing todo items" do
-  let!(:todo_list) { TodoList.create(title: "Grocery List", description: "Groceries") }
-  let!(:todo_item) { todo_list.todo_items.create(content: "Milk") }
-  let(:user) { create(:user) }  
+  let(:user) { todo_list.user }
+  let!(:todo_list) { create(:todo_list) }
+  let!(:todo_item) { todo_list.todo_items.create(content: "Milk") }  
   before { sign_in user, password: 'treehouse1' }
 
   it "is successful when marking a single item complete" do
@@ -17,21 +17,20 @@ describe "Completing todo items" do
   end
 
   context "with completed items" do
-      let!(:completed_todo_item) { todo_list.todo_items.create(content: "Eggs", completed_at: Time.now) }
+    let!(:completed_todo_item) { todo_list.todo_items.create(content: "Eggs", completed_at: 5.minutes.ago) }
 
-      it "shows the completed items as complete" do
-        visit_todo_list todo_list
-        within dom_id_for(completed_todo_item) do
-          expect(page).to have_content(completed_todo_item.completed_at)
-        end
+    it "shows completed items as complete" do
+      visit_todo_list todo_list
+      within dom_id_for(completed_todo_item) do
+        expect(page).to have_content(completed_todo_item.completed_at)
       end
+    end
 
-      it "does not give the option to mark complete" do
-        visit_todo_list todo_list
-        within dom_id_for(completed_todo_item) do
-          expect(page).to_not have_content("Mark Complete")
-        end
+    it "does not give the option to mark complete" do
+      visit_todo_list todo_list
+      within dom_id_for(completed_todo_item) do
+        expect(page).to_not have_content("Mark Complete")
       end
+    end
   end
-
 end
