@@ -1,12 +1,12 @@
-require 'spec_helper.rb'
+require 'spec_helper'
 
 describe "Editing todo lists" do
-  let!(:todo_list) {todo_list = TodoList.create(title: "Groceries", description: "Grocery list.")}
+  let(:user) { create(:user) }
+  let!(:todo_list) { TodoList.create(title: "Groceries", description: "Grocery list.") }
 
   def update_todo_list(options={})
     options[:title] ||= "My todo list"
-    options[:description] ||= "This is my todo list"
-
+    options[:description] ||= "This is my todo list."
     todo_list = options[:todo_list]
 
     visit "/todo_lists"
@@ -19,12 +19,16 @@ describe "Editing todo lists" do
     click_button "Update Todo list"
   end
 
-  it "updates a todo list successfully with correct information" do 
-    
+  before do
+    sign_in user, password: "treehouse1"
+  end
+
+
+  it "updates a todo list successfully with correct information" do
     update_todo_list todo_list: todo_list, 
                      title: "New title", 
                      description: "New description"
-    
+
     todo_list.reload
 
     expect(page).to have_content("Todo list was successfully updated")
@@ -34,6 +38,9 @@ describe "Editing todo lists" do
 
   it "displays an error with no title" do
     update_todo_list todo_list: todo_list, title: ""
+    title = todo_list.title
+    todo_list.reload
+    expect(todo_list.title).to eq(title)
     expect(page).to have_content("error")
   end
 
