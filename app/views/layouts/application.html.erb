@@ -8,6 +8,25 @@
 </head>
 <body>
 
+<nav>
+  <h2>Navigation</h2>
+  <div class="nav_content">
+    <ul>  
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "All Tags", tags_path %></li>
+    </ul>
+  </div><br />
+
+  <h4>See Posts by Month</h4>
+  <div class="nav_content">
+    <ul>
+      <% %w{jan feb mar apr may jun jul aug sep nov dec}.each do |month| %>
+      <li><%= link_to Article.full_month(month), month_path(month) %> (<%= Article.number_in_month(month) %>)</li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
 <p class="flash"><%= flash.notice %></p>
 <div id="container">
   <div id="content">

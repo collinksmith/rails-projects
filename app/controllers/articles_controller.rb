@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_filter :require_login, except: [:index, :show]
+  before_filter :require_login, except: [:index, :show, :month]
 
   include ArticlesHelper
 
@@ -47,5 +47,11 @@ class ArticlesController < ApplicationController
     flash.notice = "Article #{@article.title} Updated!"
 
     redirect_to article_path(@article)
+  end
+
+  def month
+    @articles = Article.in_month(params[:month])
+
+    # redirect_to month_path(params[:month])
   end
 end
