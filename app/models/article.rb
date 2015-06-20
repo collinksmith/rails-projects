@@ -1,6 +1,4 @@
 class Article < ActiveRecord::Base
-  
-
   has_many :comments
   has_many :taggings
   has_many :tags, through: :taggings
@@ -61,5 +59,29 @@ class Article < ActiveRecord::Base
                      nov: 'november',
                      dec: 'december'}
     full_months[month_str.to_sym].capitalize
+  end
+
+  def increment_view_count
+    if self.view_count.nil?
+      self.view_count = 1
+    else
+      self.view_count += 1
+    end
+    save
+  end
+
+  def self.remove_nils_from_view_count
+    Article.all.each do |article|
+      if article.view_count.nil?
+        article.view_count = 0 
+        article.save
+      end
+    end
+  end
+
+  def self.most_views
+    Article.remove_nils_from_view_count
+    articles_by_views = Article.all.sort_by { |article| article.view_count }.reverse
+    articles_by_views[0..2]
   end
 end

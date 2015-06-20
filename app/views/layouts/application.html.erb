@@ -21,7 +21,16 @@
   <div class="nav_content">
     <ul>
       <% %w{jan feb mar apr may jun jul aug sep nov dec}.each do |month| %>
-      <li><%= link_to Article.full_month(month), month_path(month) %> (<%= Article.number_in_month(month) %>)</li>
+        <li><%= link_to "#{Article.full_month(month)} (#{Article.number_in_month(month)})", month_path(month) %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <h4>Most Popular Posts</h4>
+  <div class="nav_content">
+    <ul>
+      <% Article.most_views.each do |article| %>
+        <li><%= link_to "#{article.title} (#{article.view_count} views)", article_path(article) %></li> 
       <% end %>
     </ul>
   </div>
