@@ -1,12 +1,12 @@
 class Enrollment < ActiveRecord::Base
   belongs_to(
-    :students,
+    :student,
     foreign_key: :student_id,
     primary_key: :id,
     class_name: 'User'
   )
   belongs_to(
-    :courses,
+    :course,
     foreign_key: :course_id,
     primary_key: :id,
     class_name: 'Course'

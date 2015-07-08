@@ -76,3 +76,66 @@ SQLite3::SQLException: no such column: enrollments.user_id: SELECT "enrollments"
   [1m[35mEnrollment Load (0.3ms)[0m  SELECT "enrollments".* FROM "enrollments" ORDER BY "enrollments"."id" ASC LIMIT 1
   [1m[36mUser Load (24.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
   [1m[35mEnrollment Load (0.3ms)[0m  SELECT "enrollments".* FROM "enrollments" ORDER BY "enrollments"."id" ASC LIMIT 1
+  [1m[36mEnrollment Load (0.4ms)[0m  [1mSELECT "enrollments".* FROM "enrollments" ORDER BY "enrollments"."id" ASC LIMIT 1[0m
+  [1m[35mCourse Load (14.8ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? ORDER BY "courses"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (235.7ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" INNER JOIN "enrollments" ON "courses"."id" = "enrollments"."course_id" WHERE "enrollments"."student_id" = ?  [["student_id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mEnrollment Load (0.2ms)[0m  SELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."student_id" = ?  [["student_id", 1]]
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT 1[0m
+  [1m[35mEnrollment Load (0.2ms)[0m  SELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."course_id" = ?  [["course_id", 1]]
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "enrollments" ON "users"."id" = "enrollments"."student_id" WHERE "enrollments"."course_id" = ?  [["course_id", 1]]
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" INNER JOIN "enrollments" ON "users"."id" = "enrollments"."student_id" WHERE "enrollments"."course_id" = ?  [["course_id", 1]]
+  [1m[36mEnrollment Load (0.3ms)[0m  [1mSELECT "enrollments".* FROM "enrollments" ORDER BY "enrollments"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  [1m[36mEnrollment Load (0.3ms)[0m  [1mSELECT "enrollments".* FROM "enrollments" ORDER BY "enrollments"."id" ASC LIMIT 1[0m
+  [1m[35mEnrollment Load (0.1ms)[0m  SELECT "enrollments".* FROM "enrollments" ORDER BY "enrollments"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  [1m[35mEnrollment Load (0.2ms)[0m  SELECT "enrollments".* FROM "enrollments" ORDER BY "enrollments"."id" ASC LIMIT 1
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? ORDER BY "courses"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mEnrollment Load (0.2ms)[0m  [1mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."student_id" = ?[0m  [["student_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" INNER JOIN "enrollments" ON "courses"."id" = "enrollments"."course_id" WHERE "enrollments"."student_id" = ?  [["student_id", 1]]
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT 1[0m
+  [1m[35mEnrollment Load (0.3ms)[0m  SELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."course_id" = ?  [["course_id", 1]]
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "enrollments" ON "users"."id" = "enrollments"."student_id" WHERE "enrollments"."course_id" = ?  [["course_id", 1]]
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" INNER JOIN "enrollments" ON "users"."id" = "enrollments"."student_id" WHERE "enrollments"."course_id" = ?  [["course_id", 1]]
+  [1m[36mCourse Load (0.5ms)[0m  [1mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT 1[0m
+  [1m[35mCourse Load (32.8ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."prereq_id" = ? ORDER BY "courses"."id" ASC LIMIT 1  [["prereq_id", 1]]
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT 1[0m
+  [1m[35mCourse Load (0.5ms)[0m  SELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT 1
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."prereq_id" = ? ORDER BY "courses"."id" ASC LIMIT 1[0m  [["prereq_id", 1]]
+  [1m[35mCourse Load (0.5ms)[0m  SELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT 1
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? ORDER BY "courses"."id" ASC LIMIT 1[0m  [["id", nil]]
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses"
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? ORDER BY "courses"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mCourse Load (0.4ms)[0m  SELECT "courses".* FROM "courses"
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? ORDER BY "courses"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT 1
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? ORDER BY "courses"."id" ASC LIMIT 1[0m  [["id", nil]]
+  [1m[35mCourse Load (0.4ms)[0m  SELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT 1
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses"[0m
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? ORDER BY "courses"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateInstructors (20150708202029)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "instructors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150708202029"]]
+  [1m[36m (38.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (56.3ms)[0m  INSERT INTO "instructors" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Wed, 08 Jul 2015 20:26:48 UTC +00:00], ["name", "Johnny"], ["updated_at", Wed, 08 Jul 2015 20:26:48 UTC +00:00]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE "courses" SET "instructor_id" = ?, "updated_at" = ? WHERE "courses"."id" = 1  [["instructor_id", 1], ["updated_at", Wed, 08 Jul 2015 20:27:50 UTC +00:00]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mInstructor Load (0.1ms)[0m  SELECT "instructors".* FROM "instructors" WHERE "instructors"."id" = ? ORDER BY "instructors"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mInstructor Load (0.3ms)[0m  [1mSELECT "instructors".* FROM "instructors" ORDER BY "instructors"."id" ASC LIMIT 1[0m
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."instructor_id" = ?  [["instructor_id", 1]]

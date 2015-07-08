@@ -5,5 +5,9 @@ class User < ActiveRecord::Base
     primary_key: :id,
     class_name: "Enrollment"
   )
-  has_many :enrolled_courses, through: :enrollments, source: :courses 
+  has_many(
+    :enrolled_courses,
+    through: :enrollments,
+    source: :course
+  )
 end
