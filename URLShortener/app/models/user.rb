@@ -25,8 +25,11 @@ class User < ActiveRecord::Base
     class_name: 'Visit'
   )
 
-  has_many :visited_urls, through: :visits, source: :shortened_url
-
-
+  has_many(
+    :visited_urls,
+    -> { distinct },
+    through: :visits,
+    source: :shortened_url
+  )
 
 end

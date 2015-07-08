@@ -27,7 +27,12 @@ class ShortenedUrl < ActiveRecord::Base
     class_name: 'Visit'
   )
 
-  has_many :visitors, through: :visits, source: :visitor 
+  has_many(
+    :visitors,
+    -> { distinct },
+    through: :visits,
+    source: :visitor
+  )
 
   def self.random_code
     new_short_url = SecureRandom.base64(16)
@@ -46,7 +51,18 @@ class ShortenedUrl < ActiveRecord::Base
     )
   end
 
+  def num_clicks
+    self.visits.count
+  end
 
+  def num_uniques
+    self.visitors.count
+  end
+
+  def num_recent_unique
+    self.visits.where("created_at > ?", 120.minutes.ago)
+                      .select(:user_id).distinct.count
+  end
 
 
 end
