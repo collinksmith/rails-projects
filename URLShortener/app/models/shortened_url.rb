@@ -1,13 +1,33 @@
+# == Schema Information
+#
+# Table name: shortened_urls
+#
+#  id           :integer          not null, primary key
+#  long_url     :string
+#  short_url    :string
+#  submitter_id :integer
+#
+
 require 'securerandom'
 
 class ShortenedUrl < ActiveRecord::Base
   validates :short_url, presence: :true, uniqueness: :true
+
   belongs_to(
     :user,
     foreign_key: :submitter_id,
     primary_key: :id,
     class_name: "User"
   )
+
+  has_many(
+    :visits,
+    foreign_key: :shortened_url_id,
+    primary_key: :id,
+    class_name: 'Visit'
+  )
+
+  has_many :visitors, through: :visits, source: :visitor 
 
   def self.random_code
     new_short_url = SecureRandom.base64(16)
