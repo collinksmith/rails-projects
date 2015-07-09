@@ -12,6 +12,9 @@ require 'securerandom'
 
 class ShortenedUrl < ActiveRecord::Base
   validates :short_url, presence: :true, uniqueness: :true
+  validates :long_url, length: { maximum: 255 }
+  validate :spam_check
+  validate :not_too_many_urls
 
   belongs_to(
     :user,
@@ -47,6 +50,17 @@ class ShortenedUrl < ActiveRecord::Base
     source: :tag_topic
   )
 
+  def self.prune
+    old_urls = []
+    self.find_each do |url|
+      if url.visits.where('created_at > ?', 60.minutes.ago).count < 1
+        old_urls << url
+      end
+    end
+
+    old_urls.each { |url| url.delete }
+  end
+
   def self.random_code
     new_short_url = SecureRandom.base64(16)
     while ShortenedUrl.exists?(short_url: new_short_url)
@@ -77,5 +91,20 @@ class ShortenedUrl < ActiveRecord::Base
                       .select(:user_id).distinct.count
   end
 
+  private
 
+  def spam_check
+    if ShortenedUrl.where("created_at > ? AND submitter_id = ?",
+                          1.minute.ago, submitter_id).count >= 5
+      errors[:base] << "Spam detected"
+    end
+  end
+
+  def not_too_many_urls
+    unless User.find(submitter_id).premium
+      if ShortenedUrl.where("submitter_id = ?", submitter_id).count >= 5
+        errors[:base] << "Passed non-premium URL limit"
+      end
+    end
+  end
 end
