@@ -10,6 +10,10 @@ class Contact < ActiveRecord::Base
     primary_key: :id
   )
 
+  has_many :contact_groupings
+  has_many :groups, through: :contact_groupings, source: :group
+  has_many :group_users, through: :groups, source: :users
+
   has_many :comments, as: :commentable
   has_many :contact_shares
 

@@ -15,6 +15,15 @@ class User < ActiveRecord::Base
 
   has_many :shared_contacts, through: :contact_shares, source: :contact
 
+  has_many :user_groupings
+
+  has_many :groups, through: :user_groupings, source: :group
+
+  has_many :group_contacts, through: :groups, source: :contacts
+
+
+
+
   has_many(
     :authored_comments,
     class_name: :Comment,

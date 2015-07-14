@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714001702) do
+ActiveRecord::Schema.define(version: 20150714003355) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "body",             null: false
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20150714001702) do
 
   add_index "comments", ["author_id"], name: "index_comments_on_author_id"
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id"
+
+  create_table "contact_groupings", force: :cascade do |t|
+    t.integer  "group_id",   null: false
+    t.integer  "contact_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "contact_groupings", ["contact_id"], name: "index_contact_groupings_on_contact_id"
+  add_index "contact_groupings", ["group_id", "contact_id"], name: "index_contact_groupings_on_group_id_and_contact_id", unique: true
 
   create_table "contact_shares", force: :cascade do |t|
     t.integer  "contact_id", null: false
@@ -47,6 +57,22 @@ ActiveRecord::Schema.define(version: 20150714001702) do
 
   add_index "contacts", ["name"], name: "index_contacts_on_name"
   add_index "contacts", ["user_id", "email"], name: "index_contacts_on_user_id_and_email", unique: true
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_groupings", force: :cascade do |t|
+    t.integer  "group_id",   null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "user_groupings", ["group_id", "user_id"], name: "index_user_groupings_on_group_id_and_user_id", unique: true
+  add_index "user_groupings", ["user_id"], name: "index_user_groupings_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
