@@ -48,6 +48,12 @@ class UsersController < ApplicationController
     render json: user
   end
 
+  def favorites
+    favorites = Contact.where(user_id: params[:id], favorite: true)
+    favorites += ContactShare.where(user_id: params[:id], favorite: true)
+
+    render json: favorites
+  end
 
   private
 
