@@ -10,6 +10,7 @@ class Contact < ActiveRecord::Base
     primary_key: :id
   )
 
+  has_many :comments, as: :commentable
   has_many :contact_shares
 
   has_many :shared_users, through: :contact_shares, source: :user

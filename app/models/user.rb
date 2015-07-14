@@ -9,7 +9,16 @@ class User < ActiveRecord::Base
     dependent: :destroy
   )
 
+  has_many :comments, as: :commentable
+
   has_many :contact_shares, dependent: :destroy
 
   has_many :shared_contacts, through: :contact_shares, source: :contact
+
+  has_many(
+    :authored_comments,
+    class_name: :Comment,
+    primary_key: :id,
+    foreign_key: :author_id
+    )
 end
