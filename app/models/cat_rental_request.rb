@@ -30,6 +30,29 @@ class CatRentalRequest < ActiveRecord::Base
     ["APPROVED", "DENIED", "PENDING"]
   end
 
+  def approve!
+    begin
+      ActiveRecord::Base.transaction do
+        self.status = "APPROVED"
+        save!
+        overlapping_pending_requests.each do |request|
+          request.deny!
+        end
+      end
+    rescue ActiveRecord::RecordInvalid
+      return false
+    end
+  end
+
+  def deny!
+    self.status = "DENIED"
+    save!
+  end
+
+  def pending?
+    status == "PENDING"
+  end
+
   # private
 
   def good_status
@@ -57,8 +80,12 @@ class CatRentalRequest < ActiveRecord::Base
     !overlapping_requests.where(status: "APPROVED").empty?
   end
 
+  def overlapping_pending_requests
+    overlapping_requests.where(status: "PENDING")
+  end
+
   def start_before_end_date
-    if start_date > end_date
+    unless start_date && end_date && start_date <= end_date
       errors[:dates] << "Can't have start date after end date"
     end
   end
