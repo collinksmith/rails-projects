@@ -1,7 +1,9 @@
 <h1>All Cats</h1>
 
-<ul>
+<ul class="list-group">
   <% @cats.each do |cat| %>
-    <li> <%= link_to cat.name, cat_url(cat) %></li>
+    <li class="list-group-item"><%= link_to cat.name, cat_url(cat) %></li>
   <% end %>
 </ul>
+
+<%= button_to "Create New Cat!", new_cat_url, method: :get %>

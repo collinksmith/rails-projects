@@ -33,6 +33,10 @@ class Cat < ActiveRecord::Base
     elapsed_seconds/(365*24*60*60)
   end
 
+  def birth_date
+    return false unless attributes["birth_date"]
+    attributes["birth_date"].strftime('%Y-%m-%d')
+  end
 
   private
   def good_color
@@ -46,5 +50,4 @@ class Cat < ActiveRecord::Base
       errors[:sex] << "Sex must be 'm' or 'f'"
     end
   end
-
 end

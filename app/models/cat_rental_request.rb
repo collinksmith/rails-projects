@@ -53,6 +53,16 @@ class CatRentalRequest < ActiveRecord::Base
     status == "PENDING"
   end
 
+  def start_date
+    return false unless attributes["start_date"]
+    attributes["start_date"].strftime('%Y-%m-%d')
+  end
+
+  def end_date
+    return false unless attributes["end_date"]
+    attributes["end_date"].strftime('%Y-%m-%d')
+  end
+
   # private
 
   def good_status

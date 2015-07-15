@@ -32,19 +32,16 @@
   <br>
   <textarea rows="4" cols="50" name="cat[description]" id="cat_description">
 <%= cat.description %></textarea>
-
-
   <br>
 
   <label for="cat_birth_date">Birth Date</lable>
   <input type="date" name="cat[birth_date]" id="cat_birth_date"
-  value="<%=cat.birth_date.strftime('%Y-%m-%d') if cat.birth_date %>">
+  value="<%=cat.birth_date if cat.birth_date %>">
   <br>
-  
+
   <% if cat.persisted? %>
     <input type="submit" value="Edit cat">
   <% else %>
     <input type="submit" value="Create cat">
   <% end %>
-
 </form>
