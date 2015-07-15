@@ -5,11 +5,11 @@
 <form action="<%= cats_url %>" method="post">
 <% end %>
   <label for="cat_name">Name</label>
-  <input type="text" name="cat[name]" id="cat_name" value="<%= cat.name %>">
+  <input type="text" class="form-control" name="cat[name]" id="cat_name" value="<%= cat.name %>">
   <br>
 
   <label for="cat_color">Color</label>
-  <select name="cat[color]" id="cat_color">
+  <select name="cat[color]" id="cat_color" >
     <option value=""></option>
     <% Cat.colors.each do |color| %>
       <option value="<%= color %>" <%= "selected" if color == cat.color %>>
@@ -30,13 +30,13 @@
 
   <label for="cat_description">Description</label>
   <br>
-  <textarea rows="4" cols="50" name="cat[description]" id="cat_description">
+  <textarea rows="4" cols="50" name="cat[description]" id="cat_description" class="form-control" >
 <%= cat.description %></textarea>
   <br>
 
   <label for="cat_birth_date">Birth Date</lable>
   <input type="date" name="cat[birth_date]" id="cat_birth_date"
-  value="<%=cat.birth_date if cat.birth_date %>">
+  value="<%=cat.birth_date if cat.birth_date %>" class="form-control" >
   <br>
 
   <% if cat.persisted? %>
