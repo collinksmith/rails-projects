@@ -3,11 +3,17 @@ class UsersController < ApplicationController
     @user = User.create!(user_params)
     login!(@user)
     flash[:notice] = "Successfully signed up!"
-    redirect_to :show
+    redirect_to user_url(@user)
   end
 
   def new
     render :new
+  end
+
+  def show
+    @user = current_user
+
+    render :show
   end
 
   private

@@ -8,6 +8,22 @@
 </head>
 <body>
 
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
+<% if flash[:errors] %>
+  <%= flash[:errors] %>
+<% end %>
+
+<% if current_user %>
+  <h1>Logged in as <%= current_user.email %>.</h1>
+  <%= button_to "Log Out", session_url, method: :delete %>
+<% else %>
+  <%= button_to "Sign Up", new_user_url, method: :get %>
+  <%= button_to "Log In", new_session_url, method: :get %>
+<% end %>
+
 <%= yield %>
 
 </body>
