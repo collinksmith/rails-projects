@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def create
     @user = User.create!(user_params)
+    @user.generate_activation_token!
     login!(@user)
     flash[:notice] = "Successfully signed up!"
     
@@ -18,6 +19,18 @@ class UsersController < ApplicationController
     @user = current_user
 
     render :show
+  end
+
+  def activate
+    token = params[:activation_token]
+    @user = User.find_by(activation_token: token)
+
+    if @user && @user.activated == false
+      @user.toggle!(:activated)
+      flash[:notice] = "Account activated!"
+    end
+
+    redirect_to new_session_url
   end
 
   private
