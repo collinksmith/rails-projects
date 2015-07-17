@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include ERB::Util
+
   def auth_token
     html = <<-HTML
     <input type='hidden'
@@ -16,6 +18,14 @@ module ApplicationHelper
            value='#{method_type}'>
     HTML
 
+    html.html_safe
+  end
+
+  def ugly_lyrics(lyrics)
+    lyrics = lyrics.split("\n")
+    lyrics.map! { |line| "&#9835" + h(line) }
+
+    html = "<pre>#{lyrics.join("\n")}</pre>"
     html.html_safe
   end
 end

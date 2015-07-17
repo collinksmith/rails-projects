@@ -1,12 +1,24 @@
 <%= link_to "Back to Album", album_url(@track.album_id) %>
-<h2><%= @track.name %></h2>
+<h1><%= @track.name %></h1>
 <%= button_to "Edit Track", edit_track_url(@track), method: :get %>
 <%= button_to "Delete Track", track_url(@track), method: :delete %>
 
-
-
-<ul>
+<!-- <ul>
   <% @track.attributes.each do |k, v| %>
     <li><%= k %>: <%= v %></li>
   <% end %>
-</ul>
+</ul> -->
+
+<h2>Album</h2>
+<%= @track.album.name %>
+
+<h2>Lyrics</h2>
+<%= ugly_lyrics(@track.lyrics) %>
+
+<h3>Comments</h3>
+<% notes = Note.includes(:user).where(track_id: @track.id) %>
+<% notes.each do |note| %>
+  <%= render "notes/note", note: note %>
+<% end %>
+
+<%= render "notes/form", note: @note %>

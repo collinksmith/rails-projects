@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :tracks, except: [:new]
 
   resource :session, only: [:create, :destroy, :new]
+
+  resources :notes
 end
