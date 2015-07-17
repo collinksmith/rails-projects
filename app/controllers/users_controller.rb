@@ -3,6 +3,10 @@ class UsersController < ApplicationController
     @user = User.create!(user_params)
     login!(@user)
     flash[:notice] = "Successfully signed up!"
+    
+    msg = UserMailer.welcome_email(@user)
+    msg.deliver
+
     redirect_to user_url(@user)
   end
 

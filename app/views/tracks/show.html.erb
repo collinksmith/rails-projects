@@ -13,7 +13,7 @@
 <%= @track.album.name %>
 
 <h2>Lyrics</h2>
-<%= ugly_lyrics(@track.lyrics) %>
+<%= ugly_lyrics(@track.lyrics) if @track.lyrics %>
 
 <h3>Comments</h3>
 <% notes = Note.includes(:user).where(track_id: @track.id) %>
