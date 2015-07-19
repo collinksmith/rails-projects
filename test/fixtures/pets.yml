@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: pets
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)      not null
+#  animal_type :string(255)      not null
+#  sex         :string(255)      not null
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  animal_type: MyString
+  sex: 
+
+two:
+  name: MyString
+  animal_type: MyString
+  sex: 

@@ -1,0 +1,29 @@
+<h3><%= pet.name %></h3>
+<ul>
+    <li>Type: <%= pet.animal_type %></li>
+    <li>Sex: <%= pet.sex %></li>
+</ul>
+
+<% if logged_in? %>
+  <% if current_user.pets.include?(pet) %>
+    <form action="<%= pet_follow_url(pet) %>" method="post">
+      <%= auth_token %>
+      <%= method_type(:delete) %>
+      <input type="hidden"
+             name="pet_follow[pet_id]"
+             value="<%= pet.id %>">
+      <input type="submit" value="Unfollow this pet">
+    </form>
+  <% else %>
+    <form action="<%= pet_follows_url %>" method="post">
+      <%= auth_token %>
+      <input type="hidden"
+             name="pet_follow[pet_id]"
+             value="<%= pet.id %>">
+      <input type="hidden"
+             name="pet_follow[user_id]"
+             value="<%= current_user.id %>">
+      <input type="submit" value="Follow this pet!">
+    </form>
+  <% end %>
+<% end %>

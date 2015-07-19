@@ -1,0 +1,7 @@
+<h1>All Pets</h1>
+<% @pets.each do |pet| %>
+<%= render "info", pet: pet %>
+<% end %>
+
+<br>
+<a href="<%= new_pet_url %>" class="btn btn-primary" role="button">Create a New Pet</a>

@@ -1,0 +1,2 @@
+module PetFollowsHelper
+end

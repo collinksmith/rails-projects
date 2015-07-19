@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AuthDemo</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-header">
+    <ul class="nav nav-pills">
+      <%= nav_link("All Pets", pets_url) %>
+      <% if logged_in? %>
+        <%= nav_link("My Pets", user_url) %>
+        <%= nav_link("Sign Out", session_url, :delete) %>
+      <% else %>
+        <%= nav_link("Sign In", new_session_url) %>
+        <%= nav_link("Sign Up", new_user_url) %>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+<% if flash[:errors] %>
+  <div class="alert alert-danger" role="alert">
+    <% flash[:errors].each do |e| %>
+      <%= e %>
+    <% end %>
+  </div>
+<% elsif flash[:success] %>
+  <div class="alert alert-success" role="alert">
+    <% flash[:success].each do |e| %>
+      <%= e %>
+    <% end %>
+  </div>
+<% elsif flash[:notice] %>
+  <div class="alert alert-info" role="alert">
+    <% flash[:notice].each do |e| %>
+      <%= e %>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="container">
+  <%= yield %>
+</div>
+
+</body>
+</html>
