@@ -12,7 +12,7 @@
       <input type="hidden"
              name="pet_follow[pet_id]"
              value="<%= pet.id %>">
-      <input type="submit" value="Unfollow this pet">
+      <button type="button" class="btn btn-danger">Unfollow this pet.</button>
     </form>
   <% else %>
     <form action="<%= pet_follows_url %>" method="post">
@@ -23,7 +23,7 @@
       <input type="hidden"
              name="pet_follow[user_id]"
              value="<%= current_user.id %>">
-      <input type="submit" value="Follow this pet!">
+      <button type="button" class="btn btn-success">Follow this pet!</button>
     </form>
   <% end %>
 <% end %>

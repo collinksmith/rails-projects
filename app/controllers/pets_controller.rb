@@ -16,7 +16,7 @@ class PetsController < ApplicationController
     @pet.animal_type.downcase!
 
     if @pet.save
-      flash[:success] = "You successfully created #{@pet.name}!"
+      flash[:success] = ["You successfully created #{@pet.name}!"]
       redirect_to pet_url(@pet)
     else
       flash.now[:errors] = @pet.errors.full_messages
