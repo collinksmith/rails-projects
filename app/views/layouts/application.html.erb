@@ -11,17 +11,28 @@
 <nav class="navbar">
   <div class="navbar-header">
     <ul class="nav nav-pills">
-      <%= nav_link("All Pets", pets_url) %>
       <%= nav_link("Home", home_url) %>
       <%= nav_link("About", about_url) %>
       <%= nav_link("Contact", contact_url) %>
       <% if logged_in? %>
-        <%= nav_link("My Pets", user_url) %>
-        <%= nav_link("Sign Out", session_url, :delete) %>
+        <li>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <%= current_user.username %>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><%= nav_link("My Pets", user_url) %></li>
+              <li><%= nav_link("All Pets", pets_url) %></li>
+              <li><%= nav_link("Sign Out", session_url, :delete) %></li>
+            </ul>
+          </div>
+        </li>
       <% else %>
         <%= nav_link("Sign In", new_session_url) %>
         <%= nav_link("Sign Up", new_user_url) %>
       <% end %>
+
     </ul>
   </div>
 </nav>
