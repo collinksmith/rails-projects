@@ -8,32 +8,39 @@
 </head>
 <body>
 
-<nav class="navbar">
-  <div class="navbar-header">
-    <ul class="nav nav-pills">
-      <%= nav_link("Home", home_url) %>
-      <%= nav_link("About", about_url) %>
-      <%= nav_link("Contact", contact_url) %>
-      <% if logged_in? %>
-        <li>
-          <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              <%= current_user.username %>
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <%= nav_link("Home", home_url) %>
+        <%= nav_link("About", about_url) %>
+        <%= nav_link("Contact", contact_url) %>
+
+        <% if logged_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.username %> <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
               <li><%= nav_link("My Pets", user_url) %></li>
               <li><%= nav_link("All Pets", pets_url) %></li>
+              <li class="divider"></li>
               <li><%= nav_link("Sign Out", session_url, :delete) %></li>
             </ul>
-          </div>
-        </li>
-      <% else %>
-        <%= nav_link("Sign In", new_session_url) %>
-        <%= nav_link("Sign Up", new_user_url) %>
-      <% end %>
-
-    </ul>
+          </li>
+        <% else %>
+          <%= nav_link("Sign In", new_session_url) %>
+          <%= nav_link("Sign Up", new_user_url) %>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </nav>
 
