@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def create
     # sign up the user
     @user = User.new(user_params)
+
     if @user.save
       # redirect them to the new user's show page
       log_in!(@user)

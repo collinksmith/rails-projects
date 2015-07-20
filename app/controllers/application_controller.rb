@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   def verify_login
     unless logged_in?
-      flash[:errors] = "You must log in to create or edit pets."
+      flash[:errors] = ["You must log in to create or edit pets."]
       redirect_to pets_url
     end
   end

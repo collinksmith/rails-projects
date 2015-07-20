@@ -12,6 +12,9 @@
   <div class="navbar-header">
     <ul class="nav nav-pills">
       <%= nav_link("All Pets", pets_url) %>
+      <%= nav_link("Home", home_url) %>
+      <%= nav_link("About", about_url) %>
+      <%= nav_link("Contact", contact_url) %>
       <% if logged_in? %>
         <%= nav_link("My Pets", user_url) %>
         <%= nav_link("Sign Out", session_url, :delete) %>
