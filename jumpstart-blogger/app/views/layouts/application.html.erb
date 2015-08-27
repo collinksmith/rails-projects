@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blogger</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<nav>
+  <h2>Navigation</h2>
+  <div class="nav_content">
+    <ul>  
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "All Tags", tags_path %></li>
+    </ul>
+  </div><br />
+
+  <h4>See Posts by Month</h4>
+  <div class="nav_content">
+    <ul>
+      <% %w{jan feb mar apr may jun jul aug sep nov dec}.each do |month| %>
+        <li><%= link_to "#{Article.full_month(month)} (#{Article.number_in_month(month)})", month_path(month) %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <h4>Most Popular Posts</h4>
+  <div class="nav_content">
+    <ul>
+      <% Article.most_views.each do |article| %>
+        <li><%= link_to "#{article.title} (#{article.view_count} views)", article_path(article) %></li> 
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+<p class="flash"><%= flash.notice %></p>
+<div id="container">
+  <div id="content">
+    <%= yield %>  
+    <hr>
+    <h6>
+      <% if logged_in? %>
+        <%= "Logged in as #{current_user.email}" %>
+        <%= link_to "(logout)", logout_path %>
+      <% else %>
+        <%= link_to "(login)", login_path %>
+      <% end %>
+    </h6>
+  </div>
+</div>
+</body>
+</html>
