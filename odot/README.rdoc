@@ -1,0 +1,3 @@
+# Odot
+
+A to-do list app built using Ruby on Rails by following along with this [Treehouse course](http://teamtreehouse.com/library/build-a-todo-list-application-with-rails-4).
