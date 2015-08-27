@@ -1,0 +1,21 @@
+<% action = note.persisted? ? note_url(note) : notes_url %>
+<% method = note.persisted? ? :patch : :post %>
+<% text = note.persisted? ? "Edit" : "Create" %>
+
+<h3>"<%= text %> Note"</h3>
+<form action="<%= action %>" method="post">
+  <%= method_hack(method) %>
+  <%= auth_token %>
+
+  <input type="hidden"
+         name="note[track_id]"
+         value="<%= note.track_id || params[:id] %>">
+
+  <label for="note_text">Text</label>
+  <input type="textarea"
+         name="note[text]"
+         value="<%= note.text %>"
+         id="note_text">
+
+  <input type="submit" value="<%= text %> Note">
+</form>
