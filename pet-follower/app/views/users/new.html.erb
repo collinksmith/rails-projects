@@ -1,0 +1,9 @@
+<h1>Sign up!</h1>
+
+<ul>
+  <% @user.errors.full_messages.each do |err_msg| %>
+    <li><%= err_msg %></li>
+  <% end %>
+</ul>
+
+<%= render "credentials", type: "user" %>

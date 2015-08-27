@@ -1,0 +1,12 @@
+<h1><%= @user.username %></h1>
+
+<p>Hello, <%= @user.username %></p>
+
+<p>Current Counter Value: <%= @user.counter %></p>
+
+<h2>Your Followed Pets:</h2>
+<% @user.pets.each do |pet| %>
+  <%= render "pets/info", pet: pet %>
+<% end %>
+
+<br>

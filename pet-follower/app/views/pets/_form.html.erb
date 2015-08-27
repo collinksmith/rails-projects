@@ -1,0 +1,67 @@
+<% action = @pet.persisted? ? pet_url(@pet) : pets_url %>
+<% method = @pet.persisted? ? :patch : :post %>
+<% text = @pet.persisted? ? "Edit Pet" : "Create Pet" %>
+
+<h1><%= text %></h1>
+<form action="<%= action %>" method="post">
+  <%= auth_token %>
+  <%= method_type(method) %>
+
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-1">
+      <div class="form-group">
+        <label for="pet_name">Name</label>
+        <input type="text"
+               name="pet[name]"
+               value="<%= @pet.name %>"
+               id="pet_name"
+               class="form-control">
+       </div>
+    </div>
+       
+    <div class="col-xs-4">
+      <div class="form-group"> 
+      <label for="pet_animal_type">Type of Animal</label>
+      <input type="text"
+             name="pet[animal_type]"
+             value="<%= @pet.animal_type %>"
+             id="pet_animal_type"
+             class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-1">
+      <div class="radio-inline">
+      <label>
+          <input type="radio"
+                 name="pet[sex]"
+                 value="m"
+                 id="pet_sex"
+                 <%= "selected" if @pet.sex == 'm' %>>
+          Male
+        </label>
+      </div>
+
+      <div class="radio-inline">
+        <label> 
+          <input type="radio"
+                 name="pet[sex]"
+                 value="f"
+                 id="pet_sex_f"
+                 <%= "selected" if @pet.sex == 'f' %>>
+          Female
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-1">
+      <div class="form-group"> 
+        <button class="btn btn-primary" type="submit"><%= text %></button>
+      </div>
+    </div>
+  </div>
+</form>
